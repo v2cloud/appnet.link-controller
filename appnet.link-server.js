@@ -92,7 +92,7 @@ var nmSrv = exports = module.exports = function(endpoints, sslcerts){
     eventEmitter.call(self);
 
     // at least two ports to listen
-    self.dn     = endpoints.dn      || '51dese.com';
+    self.dn     = endpoints.dn      || 'vnctest.v2cloud.com';
     self.ipaddr = endpoints.ipaddr  || '0.0.0.0';
     self.ports  = endpoints.ports   || [51686, 51868];
     
@@ -185,32 +185,32 @@ var nmSrv = exports = module.exports = function(endpoints, sslcerts){
                     
                     // 1.1
                     // notes: only support 51dese.com as domain at present !!!
-                    if (data.offer.domain != '51dese.com'  && data.offer.domain != 'www.51dese.com' &&
-                        data.offer.domain != 'appnet.link' && data.offer.domain != 'www.appnet.link') {
-                        console.log('invalid domain, please use 51dese.com or appnet.link by now');
+                    // if (data.offer.domain != '51dese.com'  && data.offer.domain != 'www.51dese.com' &&
+                    //     data.offer.domain != 'appnet.link' && data.offer.domain != 'www.appnet.link') {
+                    //     console.log('invalid domain, please use 51dese.com or appnet.link by now');
                         
-                        data.opc    = SEP.SEP_OPC_SDP_ANSWER;
+                    //     data.opc    = SEP.SEP_OPC_SDP_ANSWER;
                         
-                        data.answer = {};
-                        data.answer.ready = false;
-                        data.answer.error = 'invalid domain, please use 51dese.com or appnet.link by now';
+                    //     data.answer = {};
+                    //     data.answer.ready = false;
+                    //     data.answer.error = 'invalid domain, please use 51dese.com or appnet.link by now';
                         
-                        // 1.1.1
-                        // send back answer message, then close client and agent client in case have
-                        sendOpcMsg(client, data, function(err){
-                            if (err) console.log(err+'sendOpcMsg failed');
+                    //     // 1.1.1
+                    //     // send back answer message, then close client and agent client in case have
+                    //     sendOpcMsg(client, data, function(err){
+                    //         if (err) console.log(err+'sendOpcMsg failed');
                             
-                            setTimeout(function(){
-                                if (client && client.close) client.close();
-                            }, 2000); // 2s timeout
-                        });
+                    //         setTimeout(function(){
+                    //             if (client && client.close) client.close();
+                    //         }, 2000); // 2s timeout
+                    //     });
                         
-                        // 1.1.1.1
-                        // emit event
-                        self.emit('NS.SEP.SEP_OPC_SDP_OFFER', {client: client, data: data});
+                    //     // 1.1.1.1
+                    //     // emit event
+                    //     self.emit('NS.SEP.SEP_OPC_SDP_OFFER', {client: client, data: data});
                         
-                        break;
-                    }
+                    //     break;
+                    // }
                     
                     // 1.2
                     // check if usrkey is existing
@@ -2333,33 +2333,33 @@ var nmSrv = exports = module.exports = function(endpoints, sslcerts){
                         // 1.
                         // check offer credit by user info
                         // notes: only support 51dese.com as domain at present !!!
-                        if (tdata.offer.domain != '51dese.com'  && tdata.offer.domain != 'www.51dese.com' &&
-                            tdata.offer.domain != 'appnet.link' && tdata.offer.domain != 'www.appnet.link') {
-                            console.log('invalid domain, please use 51dese.com or appnet.link by now');
+                        // if (tdata.offer.domain != '51dese.com'  && tdata.offer.domain != 'www.51dese.com' &&
+                        //     tdata.offer.domain != 'appnet.link' && tdata.offer.domain != 'www.appnet.link') {
+                        //     console.log('invalid domain, please use 51dese.com or appnet.link by now');
                             
-                            // fill punch hole answer
-                            tdata.opc = SEP.SEP_OPC_PUNCH_ANSWER;
+                        //     // fill punch hole answer
+                        //     tdata.opc = SEP.SEP_OPC_PUNCH_ANSWER;
                             
-                            tdata.answer = {};
-                            tdata.answer.ready = false;
-                            tdata.answer.error = 'invalid domain, please use 51dese.com or appnet.link by now';
+                        //     tdata.answer = {};
+                        //     tdata.answer.ready = false;
+                        //     tdata.answer.error = 'invalid domain, please use 51dese.com or appnet.link by now';
                             
-                            // 1.1
-                            // send back punch hole answer message, then close agent socket
-                            sendOpcMsg(client, tdata, function(err){
-                                if (err) console.log(err+'sendOpcMsg failed');
+                        //     // 1.1
+                        //     // send back punch hole answer message, then close agent socket
+                        //     sendOpcMsg(client, tdata, function(err){
+                        //         if (err) console.log(err+'sendOpcMsg failed');
                                 
-                                setTimeout(function(){
-                                    if (client && client.close) client.close();
-                                }, 2000); // 2s timeout
-                            });
+                        //         setTimeout(function(){
+                        //             if (client && client.close) client.close();
+                        //         }, 2000); // 2s timeout
+                        //     });
                             
-                            // 1.1.1
-                            // emit event
-                            self.emit('AS.SEP.SEP_OPC_PUNCH_OFFER', {client: client, data: tdata});
+                        //     // 1.1.1
+                        //     // emit event
+                        //     self.emit('AS.SEP.SEP_OPC_PUNCH_OFFER', {client: client, data: tdata});
                             
-                            break;
-                        }
+                        //     break;
+                        // }
                     
                         // 2.
                         // fill punch hole answer
