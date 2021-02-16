@@ -7,7 +7,7 @@ var nmSrv = require('../appnet.io-server');
 var nmsrvs = new nmSrv(
     // endpoint info
     {
-            dn: '51dese.com',                     // domain name, change to yours
+            dn: 'vnctest.v2cloud.com',                     // domain name, change to yours
         ipaddr: '0.0.0.0', ports: [51686, 51868], // name server
           turn: [51688, 51866],                   // relay server
         option: {mbw: 32000}                      // user-specific feature, mbw: maxim bandwidth 32KB/s in default
